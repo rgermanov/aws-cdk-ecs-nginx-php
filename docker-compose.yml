@@ -5,4 +5,16 @@ services:
     image: web_proxy
     build: ./nginx
     ports:
-      - "80:80"
+      - 8080:80
+      - 443:443
+    volumes:
+      - web_public:/var/www/html           
+
+  web:
+    image: web_app
+    build: ./php        
+    volumes:
+      - web_public:/var/www/html      
+
+volumes:
+  web_public:  
